@@ -25,3 +25,7 @@ $array_column = (function_exists('array_column'))
               ? Arr::column($array, 'one key')
               : '<em>Not supported! This is a PHP 5.5+ function</em>';
 echo PHP_EOL . 'Arr::column:          ';print_r($array_column);
+
+// neat laravel functions
+echo PHP_EOL . 'Arr::get:             ';print_r(Arr::get('first', $array));
+// note: only arr::get is made needle-haystack of these functions
