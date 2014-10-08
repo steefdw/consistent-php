@@ -1,0 +1,21 @@
+{
+    "name": "steefdw/consistent-php",
+    "description": "Enables consistent PHP syntax for your projects",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "steefdw",
+            "email": "beatniak@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Consistent": "src/"
+        }
+    }
+    
+}
