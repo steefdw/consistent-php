@@ -1,6 +1,6 @@
 {
     "name": "steefdw/consistent-php",
-    "description": "Enables consistent PHP syntax for your projects",
+    "description": "Enables consistent syntax for your PHP projects",
     "license": "MIT",
     "authors": [
         {
