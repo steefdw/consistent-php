@@ -28,4 +28,5 @@ echo PHP_EOL . 'Arr::column:          ';print_r($array_column);
 
 // neat laravel functions
 echo PHP_EOL . 'Arr::get:             ';print_r(Arr::get('first', $array));
+echo PHP_EOL . 'Arr::dot:             ';print_r(Arr::dot($array));
 // note: only arr::get is made needle-haystack of these functions

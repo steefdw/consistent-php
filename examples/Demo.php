@@ -39,10 +39,12 @@ class Demo {
 
     public function show_functions()
     {
+        $basic_array_functions       = include_once __DIR__ . DIRECTORY_SEPARATOR . 'lists' . DIRECTORY_SEPARATOR . 'basic_array.php';
         $basic_string_functions      = include_once __DIR__ . DIRECTORY_SEPARATOR . 'lists' . DIRECTORY_SEPARATOR . 'basic_string.php';
         $consistent_string_functions = include_once __DIR__ . DIRECTORY_SEPARATOR . 'lists' . DIRECTORY_SEPARATOR . 'consistent_string.php';
         $neat_string_functions       = include_once __DIR__ . DIRECTORY_SEPARATOR . 'lists' . DIRECTORY_SEPARATOR . 'neat_string.php';
 
+        $this->results('Basic Array',       'Arr', $basic_array_functions);
         $this->results('Basic String',      'Str', $basic_string_functions);
         $this->results('Consistent String', 'Str', $consistent_string_functions);
         $this->results('Neat String',       'Str', $neat_string_functions);
@@ -74,9 +76,12 @@ class Demo {
         echo '<table><thead><tr><td>Original</td><td>Command</td><td>Result</td><td>Note</td></tr></thead><tbody>'.PHP_EOL;
         foreach($methods as $test)
         {
+            $params = implode('\'</span><span class="sep">,</span> <span>\'', $test['params']);
+            
             echo '<tr class="' .(($type == 'Neat String') ? 'none' : $this->test($class, $test)). '">'
             . '<td>' .$test['original']. '</td>'
-            . '<td>' .$class. '::' .$test['method']. '<span class="sep">(</span><span>\'' .implode('\'</span><span class="sep">,</span> <span>\'', $test['params']). '\'</span><span class="sep">)</span></td>'
+            . '<td>' .$class. '::' .$test['method']
+                . '<span class="sep">(</span><span>\'' .$params. '\'</span><span class="sep">)</span></td>'
             . '<td>';
             $this->result($class, $test);
 
