@@ -172,7 +172,7 @@ class Logic_Str extends Basic_Str {
     {
         return count_chars($string, $mode);
     }
-    
+
     /**
      * (PHP 4, PHP 5)<br/>
      * Make a string lowercase
@@ -201,6 +201,25 @@ class Logic_Str extends Basic_Str {
         }
 
         return strtolower($string);
+    }
+
+    /**
+     * (PHP 5)<br/>
+     * Alias for pbrk() AND Str::strpbrk()<br/>
+     * Search a string for any of a set of characters
+     * @link http://php.net/manual/en/function.strpbrk.php
+     * @param string $char_list <p>
+     * This parameter is case sensitive.
+     * </p>
+     * @param string $haystack <p>
+     * The string where <i>char_list</i> is looked for.
+     * </p>
+     * @return string a string starting from the character found, or <b>FALSE</b> if it is
+     * not found.
+     */
+    static function position_break($char_list, $haystack)
+    {
+        return pbrk($haystack, $char_list);
     }
 
     /**

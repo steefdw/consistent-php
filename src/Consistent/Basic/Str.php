@@ -281,18 +281,19 @@ class Basic_Str {
 
     /**
      * (PHP 5)<br/>
+     * Alias for pbrk()<br/>
      * Search a string for any of a set of characters
      * @link http://php.net/manual/en/function.strpbrk.php
-     * @param string $haystack <p>
-     * The string where <i>char_list</i> is looked for.
-     * </p>
      * @param string $char_list <p>
      * This parameter is case sensitive.
+     * </p>
+     * @param string $haystack <p>
+     * The string where <i>char_list</i> is looked for.
      * </p>
      * @return string a string starting from the character found, or <b>FALSE</b> if it is
      * not found.
      */
-    static function pbrk($haystack, $char_list)
+    static function pbrk($char_list, $haystack)
     {
         return strpbrk($haystack, $char_list);
     }
