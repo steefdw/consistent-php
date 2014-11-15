@@ -63,9 +63,11 @@ class Demo {
 
     function test($class, $test)
     {
-        $class = 'Consistent\\'.$class;
-        $old = call_user_func_array($test['original'], $test['params']);
-        $new = call_user_func_array(array($class, $test['method']), $test['params']);
+        $class_name = 'Consistent\\'.$class;
+        $old_params = (isset($test['old_params'])) ? $test['old_params'] : $test['params'];
+        
+        $old = call_user_func_array($test['original'], $old_params);
+        $new = call_user_func_array(array($class_name, $test['method']), $test['params']);
 
         return ($old == $new) ? 'green' : 'red';
     }
@@ -77,7 +79,7 @@ class Demo {
         foreach($methods as $test)
         {
             $params = implode('\'</span><span class="sep">,</span> <span>\'', $test['params']);
-            
+
             echo '<tr class="' .(($type == 'Neat String') ? 'none' : $this->test($class, $test)). '">'
             . '<td>' .$test['original']. '</td>'
             . '<td>' .$class. '::' .$test['method']
