@@ -36,11 +36,6 @@ class Demo {
     public function __construct()
     {
         $this->functions = array(
-            'basic_array_functions'       => (object) array(
-                'title'   => 'Basic Array',
-                'class'   => 'Arr',
-                'methods' => include_once __DIR__ . DIRECTORY_SEPARATOR . 'lists' . DIRECTORY_SEPARATOR . 'basic_array.php'
-            ),
             'basic_string_functions'      => (object) array(
                 'title'   => 'Basic String',
                 'class'   => 'Str',
@@ -55,6 +50,11 @@ class Demo {
                 'title'   => 'Neat String',
                 'class'   => 'Str',
                 'methods' => include_once __DIR__ . DIRECTORY_SEPARATOR . 'lists' . DIRECTORY_SEPARATOR . 'neat_string.php'
+            ),
+            'basic_array_functions'       => (object) array(
+                'title'   => 'Basic Array',
+                'class'   => 'Arr',
+                'methods' => include_once __DIR__ . DIRECTORY_SEPARATOR . 'lists' . DIRECTORY_SEPARATOR . 'basic_array.php'
             ),
         );
 
@@ -142,6 +142,13 @@ class Demo {
         $clean = Str::replace(array("\r\n", "\r"), '', $clean);
 
         return $clean;
+    }
+
+    public function parameters($class, $method)
+    {
+        $reflection = new ReflectionMethod($class, $method);
+
+        return $reflection->getParameters();
     }
 
 }
