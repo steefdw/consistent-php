@@ -39,7 +39,7 @@ class Arr extends Logic_Arr {
 	 */
 	public static function add($array, $key, $value)
 	{
-		if (is_null(static::get($array, $key)))
+		if (is_null(static::get($key, $array)))
 		{
 			static::set($array, $key, $value);
 		}
@@ -158,7 +158,7 @@ class Arr extends Logic_Arr {
 			if (call_user_func($callback, $key, $value)) return $value;
 		}
 
-		return value($default);
+		return $default;
 	}
 
 	/**
@@ -299,7 +299,7 @@ class Arr extends Logic_Arr {
 	 */
 	public static function pull(&$array, $key, $default = null)
 	{
-		$value = static::get($array, $key, $default);
+		$value = static::get($key, $array, $default);
 
 		static::forget($array, $key);
 
