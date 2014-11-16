@@ -39,29 +39,47 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'examples'. DIRECTORY_SEPARATOR .'D
 
 $demo = new Demo();
 
-foreach($demo->functions as $functions)
-{
-    echo '<h2>' . $functions->title . ' functions</h2>' . PHP_EOL;
-    echo '<table><thead><tr><td>Original</td><td>Command</td><td>Note</td></tr></thead><tbody>' . PHP_EOL;
+foreach($demo->functions as $functions): ?>
+
+    <h2><?php echo $functions->title ?> functions</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Original</td>
+                <td>Command</td>
+                <td>Result</td>
+                <td>Note</td>
+            </tr>
+        </thead>
+        <tbody>
+<?php
     foreach($functions->methods as $test)
     {
         $arguments = array();
         foreach($test['params'] as $argument)
         {
-            $arguments[] = (!is_object($argument) AND ! is_array($argument)) ? $argument : gettype($argument);
+            $arguments[] = gettype($argument);
         }
 
         $params = implode('\'</span><span class="sep">,</span> <span>\'', $arguments);
-
-        echo '<tr class="' . (($functions->title == 'Neat String') ? 'none' : $demo->test($functions->class, $test)) . '">'
-        . '<td>' . $test['original'] . '</td>'
-        . '<td>' . $functions->class . '::' . $test['method']
-        . '<span class="sep">(</span><span>\'' . $params . '\'</span><span class="sep">)</span></td>';
-
-        echo isset($test['note']) ? '<td class="' . $test['note_type'] . '">' . $test['note'] . '</td>' : '<td></td>';
-    }
-    echo '</tbody></table>' . PHP_EOL;
-}
+        $class  = ($functions->title == 'Neat String') ? 'none' : $demo->test($functions->class, $test);
 ?>
+            <tr class="<?php echo $class ?>">
+                <td><?php echo $test['original'] ?></td>
+                <td>
+                    <?php echo $functions->class. '::' .$test['method'] ?>
+                    <span class="sep">(</span><span><?php echo $params ?></span><span class="sep">)</span>
+                </td>
+                <td>
+                <td class="<?php echo $test['note_type'] ?>">
+                    <?php if(isset($test['note'])) echo $test['note'] ?>
+                </td>
+<?php
+    }
+?>
+        </tbody>
+    </table>
+<?php endforeach ?>
 </body>
 </html>
