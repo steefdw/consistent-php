@@ -14,6 +14,7 @@
         table {border-collapse: separate;border-spacing: 0;border-right: 1px solid #ccc;}
         td {border-bottom: 1px solid #ccc;border-left: 1px solid #ccc;padding:2px 5px;}
         thead td {background: #ccc; font-weight: bold;}
+        thead td.title {background: #fff;}
         tbody td {font-size: 13px;font-family: Courier, monospace;}
         tr.green td:first-child {border-left: 5px solid green;}
         tr.orange td:first-child {border-left: 5px solid orange;}
@@ -24,6 +25,11 @@
         small {color: #888;}
         span {color:#00b;}
         span.sep {color:#070;font-weight:bold;}
+        .docblock {position: relative;}
+        .docblock, .docblock i,.docblock span {color: #500eef}
+        .docblock .parameters {display:none;}
+        .docblock:hover .parameters {display:block;position:absolute;bottom:0;right:0;background:#fff;box-shadow: 1px 1px 2px #777;width:50%;padding:1em 2em .5em;border-radius:4px;}
+        .docblock a:visited, .docblock a {color:blue;}
     </style>
 </head>
 <body>
@@ -37,49 +43,52 @@ error_reporting(-1);
 require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer autoload
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'examples'. DIRECTORY_SEPARATOR .'Demo.php';
 
+// Make sure we can use Str::whatever(), instead of \Consistent\Str::whatever()
+use Consistent\Str;
+use Consistent\Arr;
+
 $demo = new Demo();
-
-foreach($demo->functions as $functions): ?>
-
-    <h2><?php echo $functions->title ?> functions</h2>
-
+?>
     <table>
+<?php foreach($demo->functions as $functions): ?>
         <thead>
+            <tr>
+                <td class="title" colspan="3">
+                    <h2><?php echo $functions->title ?> functions</h2>
+                </td>
+            </tr>
             <tr>
                 <td>Original</td>
                 <td>Command</td>
-                <td>Result</td>
                 <td>Note</td>
             </tr>
         </thead>
         <tbody>
-<?php
-    foreach($functions->methods as $test)
-    {
-        $arguments = array();
-        foreach($test['params'] as $argument)
-        {
-            $arguments[] = gettype($argument);
-        }
+    <?php
+        foreach($functions->methods as $test):
+            $arguments = array();
+            foreach($test['params'] as $argument)
+            {
+                $arguments[] = '$'.gettype($argument);
+            }
 
-        $params = implode('\'</span><span class="sep">,</span> <span>\'', $arguments);
-        $class  = ($functions->title == 'Neat String') ? 'none' : $demo->test($functions->class, $test);
-?>
+            $params   = implode('</span><span class="sep">,</span> <span>', $arguments);
+            $class    = ($functions->title == 'Neat String') ? 'none' : $demo->test($functions->class, $test);
+            $docblock = $demo->docblock('Consistent\\'.$functions->class, $test['method']);
+    ?>
             <tr class="<?php echo $class ?>">
                 <td><?php echo $test['original'] ?></td>
                 <td>
                     <?php echo $functions->class. '::' .$test['method'] ?>
                     <span class="sep">(</span><span><?php echo $params ?></span><span class="sep">)</span>
                 </td>
-                <td>
-                <td class="<?php echo $test['note_type'] ?>">
-                    <?php if(isset($test['note'])) echo $test['note'] ?>
+                <td class="<?php echo Arr::get('note_type', $test, 'note') ?>">
+                    <div class="docblock"><?php echo Str::replace(array('<p>'.PHP_EOL, '</p>'.PHP_EOL),'<br/>', $docblock) ?></div>
+                    <?php if(isset($test['note'])) echo '<br>'. $test['note'] ?>
                 </td>
-<?php
-    }
-?>
+    <?php endforeach ?>
         </tbody>
-    </table>
 <?php endforeach ?>
+    </table>
 </body>
 </html>

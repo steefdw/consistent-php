@@ -23,6 +23,8 @@
  * @author Steef
  */
 
+use Consistent\Str;
+
 class Demo {
 
     public $string        = 'UP, low, oK';
@@ -59,6 +61,12 @@ class Demo {
         return $this;
     }
 
+    /**
+     * Call the function and print out the results
+     *
+     * @param string $class
+     * @param array $test
+     */
     function result($class, $test)
     {
         $class = 'Consistent\\'.$class;
@@ -70,6 +78,12 @@ class Demo {
             echo $result;
     }
 
+    /**
+     * Show green on pass, red on fail, orange on 'function does not exist'
+     * @param string $class
+     * @param array $test
+     * @return string 'green', 'red' or 'orange'
+     */
     function test($class, $test)
     {
         if(!function_exists($test['original']))
@@ -82,6 +96,52 @@ class Demo {
         $new = call_user_func_array(array($class_name, $test['method']), $test['params']);
 
         return ($old == $new) ? 'green' : 'red';
+    }
+
+    /**
+     * Get the docblock from a class' method
+     *
+     * @param string $class
+     * @param string $method
+     * @param bool $clean
+     * @return string
+     */
+    public function docblock($class, $method, $clean = true)
+    {
+        $reflection = new ReflectionMethod($class, $method);
+        $docblock   = $reflection->getDocComment();
+
+        if($clean)
+            return $this->clean_block($docblock);
+
+        return $docblock;
+    }
+
+    /**
+     * Cleans the docblock from asterixes and creates a link from the URL in @link
+     *
+     * @param string $docblock
+     * @return string
+     */
+    private function clean_block($docblock)
+    {
+        $doc = Str::replace(array('* ','/**','*/', '     '), '', $docblock);
+
+        $clean = '<span class="summary">';
+        foreach(explode("\n", $doc) as $line)
+        {
+            if(Str::pos('@link ', $line) === 0)
+            {
+                $link = Str::replace('@link ', '', $line);
+                $line = '<br>@link <a href="' .$link. '">' .$link. '</a></span><span class="parameters">';
+            }
+
+            $clean .= trim($line);
+        }
+
+        $clean = Str::replace(array("\r\n", "\r"), '', $clean);
+
+        return $clean;
     }
 
 }

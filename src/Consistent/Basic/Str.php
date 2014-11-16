@@ -752,7 +752,8 @@ class Basic_Str {
      * (PHP 4, PHP 5)<br/>
      * Parse about any English textual datetime description into a Unix timestamp
      * @link http://php.net/manual/en/function.strtotime.php
-     * @param string $time <p>A date/time string. Valid formats are explained in Date and Time Formats.</p>
+     * @param string $time <p>
+     * A date/time string. Valid formats are explained in Date and Time Formats.</p>
      * @param int $now [optional] <p>
      * The timestamp which is used as a base for the calculation of relative
      * dates.
