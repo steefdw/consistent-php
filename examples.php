@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>consistent php</title>
+    <title>Function Tests - Consistent PHP</title>
     <style>
         i {color:green;}
         em{color:red;}
@@ -16,6 +16,7 @@
         thead td {background: #ccc; font-weight: bold;}
         tbody td {font-size: 13px;font-family: Courier, monospace;}
         tr.green td:first-child {border-left: 5px solid green;}
+        tr.orange td:first-child {border-left: 5px solid orange;}
         tr.red td:first-child {border-left: 5px solid red;}
         tr.red td:last-child {border-bottom-color: red;}
         td.note {color:green;}
@@ -26,26 +27,70 @@
     </style>
 </head>
 <body>
-<h1>consistent php</h1>
-<?php 
+    <h1>Consistent PHP <small>Function Tests</small></h1>
+<?php
 
 ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(-1);
 
 require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer autoload
-
-use Consistent\Str;
-use Consistent\Arr;
-
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'examples'. DIRECTORY_SEPARATOR .'Demo.php';
 
-$string = 'UP, low, oK';
-$array  = array('one' => array('one key' => 'one value'), 'TWO' => array('two key' => 'two value'));
-$csv    = "test,1,\"B,C,D\",\"with a escape\\\\\", \"with an enter\\n\", \"with an enclusure enclosure\\\"\"";
-        
 $demo = new Demo();
-$demo->show_functions();
+
+foreach($demo->functions as $functions): ?>
+
+    <h2>Testing <?php echo $functions->title ?> functions</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Original</td>
+                <td>Command</td>
+                <td>Result</td>
+                <td>Note</td>
+            </tr>
+        </thead>
+        <tbody>
+<?php
+    foreach($functions->methods as $test)
+    {
+        $arguments = array();
+        foreach($test['params'] as $argument)
+        {
+            $arguments[] = (!is_object($argument) AND ! is_array($argument)) ? $argument : gettype($argument);
+        }
+
+        $params = implode('\'</span><span class="sep">,</span> <span>\'', $arguments);
+        $class  = ($functions->title == 'Neat String') ? 'none' : $demo->test($functions->class, $test);
 ?>
+            <tr class="<?php echo $class ?>">
+                <td><?php echo $test['original'] ?></td>
+                <td>
+                    <?php echo $functions->class. '::' .$test['method'] ?>
+                    <span class="sep">(</span><span><?php echo $params ?></span><span class="sep">)</span>
+                </td>
+                <td>
+<?php
+        if(!function_exists($test['original']))
+        {
+            echo '<span style="color:#f60">your PHP version is too old for this function: ' . $test['original'] . '()</span>';
+        }
+        else
+        {
+            $demo->result($functions->class, $test);
+        }
+?>
+                </td>
+                <td class="<?php echo $test['note_type'] ?>">
+                    <?php if(isset($test['note'])) echo $test['note'] ?>
+                </td>
+<?php
+    }
+?>
+        </tbody>
+    </table>
+<?php endforeach ?>
 </body>
 </html>

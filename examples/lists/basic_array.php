@@ -17,15 +17,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Consistent\Str;
 use Consistent\Arr;
 
 return array(
     array(
+        'method'    => 'change_key_case',
+        'original'  => 'array_change_key_case',
+        'params'    => array($this->array, CASE_LOWER),
+    ),
+    array(
+        'method'    => 'change_key_case',
+        'original'  => 'array_change_key_case',
+        'params'    => array($this->array, CASE_UPPER),
+    ),
+    array(
         'method'    => 'chunk',
         'original'  => 'array_chunk',
-        'params'    => array($this->array, 1),
-        //'note'      => 'note: asdf',
-        //'note_type' => 'note'
+        'params'    => array($this->simple_array, 2),
     ),
+    array(
+        'method'    => 'column',
+        'original'  => 'array_column',
+        'params'    => array($this->array, 'two key'),
+    ),
+
 );

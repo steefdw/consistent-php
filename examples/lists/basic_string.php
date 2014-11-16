@@ -18,7 +18,6 @@
  */
 
 use Consistent\Str;
-use Consistent\Arr;
 
 return array(
     array(
