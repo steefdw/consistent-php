@@ -77,7 +77,7 @@ $demo = new Demo();
                 </td>
                 <td>
 <?php
-        if(!function_exists($test['original']))
+        if(!function_exists($test['original']) AND $test['original'] !== '(new)')
         {
             echo '<span style="color:#f60">your PHP version is too old for this function: ' . $test['original'] . '()</span>';
         }

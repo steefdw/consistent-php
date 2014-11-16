@@ -56,6 +56,11 @@ class Demo {
                 'class'   => 'Arr',
                 'methods' => include_once __DIR__ . DIRECTORY_SEPARATOR . 'lists' . DIRECTORY_SEPARATOR . 'basic_array.php'
             ),
+            'neat_array_functions'        => (object) array(
+                'title'   => 'Neat Array',
+                'class'   => 'Arr',
+                'methods' => include_once __DIR__ . DIRECTORY_SEPARATOR . 'lists' . DIRECTORY_SEPARATOR . 'neat_array.php'
+            ),
         );
 
         return $this;
