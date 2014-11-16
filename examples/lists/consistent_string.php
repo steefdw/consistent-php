@@ -50,7 +50,7 @@ return array(
         'method'    => 'translate',
         'original'  => 'strtr',
         'params'    => array($this->string, ' ', 'X'),
-        'note'      => 'note: alias for Str::tr(). Why use "tr" instead of "token"? 7 characters less typing, but 10 times less readable.',
+        'note'      => 'note: alias for Str::tr(). Why use "tr" instead of "translate"? 7 characters less typing, but 10 times less readable.',
         'note_type' => 'note'
     ),
     // maybe too far-fetched? -------------
