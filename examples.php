@@ -6,14 +6,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Function Tests - Consistent PHP</title>
     <style>
+        html, body {font-family: "Trebuchet MS","Tahoma","arial","sans-serif";}
         i {color:green;}
         em{color:red;}
-        h1,h2,h3 {font: 2.5em/0.8em "Trebuchet MS","Tahoma","arial","sans-serif";}
+        h1,h2,h3 {font: 2.5em/0.8em;}
         h1 {font-weight:bold;font-size:4em;margin:0;}
         h2 {border-bottom: 2px solid #444;}
         table {border-collapse: separate;border-spacing: 0;border-right: 1px solid #ccc;}
         td {border-bottom: 1px solid #ccc;border-left: 1px solid #ccc;padding:2px 5px;}
         thead td {background: #ccc; font-weight: bold;}
+        thead td.title {background: #fff;}
         tbody td {font-size: 13px;font-family: Courier, monospace;}
         tr.green td:first-child {border-left: 5px solid green;}
         tr.orange td:first-child {border-left: 5px solid orange;}
@@ -38,13 +40,15 @@ require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer 
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'examples'. DIRECTORY_SEPARATOR .'Demo.php';
 
 $demo = new Demo();
-
-foreach($demo->functions as $functions): ?>
-
-    <h2>Testing <?php echo $functions->title ?> functions</h2>
-
+?>
     <table>
+<?php foreach($demo->functions as $functions): ?>
         <thead>
+            <tr>
+                <td colspan="4" class="title">
+                    <h2>Testing <?php echo $functions->title ?> functions</h2>
+                </td>
+            </tr>
             <tr>
                 <td>Original</td>
                 <td>Command</td>
@@ -69,7 +73,7 @@ foreach($demo->functions as $functions): ?>
                 <td><?php echo $test['original'] ?></td>
                 <td>
                     <?php echo $functions->class. '::' .$test['method'] ?>
-                    <span class="sep">(</span><span><?php echo $params ?></span><span class="sep">)</span>
+                    <span class="sep">(</span><span>'<?php echo $params ?>'</span><span class="sep">)</span>
                 </td>
                 <td>
 <?php
@@ -83,14 +87,13 @@ foreach($demo->functions as $functions): ?>
         }
 ?>
                 </td>
-                <td class="<?php echo $test['note_type'] ?>">
-                    <?php if(isset($test['note'])) echo $test['note'] ?>
-                </td>
 <?php
     }
 ?>
+<?php endforeach ?>
         </tbody>
     </table>
-<?php endforeach ?>
+    <br>
+    2014 &copy; Steef de Winter
 </body>
 </html>

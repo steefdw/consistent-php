@@ -90,5 +90,7 @@ $demo = new Demo();
         </tbody>
 <?php endforeach ?>
     </table>
+    <br>
+    2014 &copy; Steef de Winter
 </body>
 </html>

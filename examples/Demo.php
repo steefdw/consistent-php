@@ -27,7 +27,7 @@ use Consistent\Str;
 
 class Demo {
 
-    public $string        = 'UP, low, oK';
+    public $string        = 'Hello World!';
     public $array         = array('one' => array('one key' => 'one value'), 'TWO' => array('two key' => 'two value'));
     public $simple_array  = array('One', 'Two', 'Three', 'Four');
     public $csv           = "test,1,\"B,C,D\",\"with a escape\\\\\", \"with an enter\\n\", \"with an enclusure enclosure\\\"\"";

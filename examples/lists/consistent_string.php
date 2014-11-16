@@ -42,7 +42,7 @@ return array(
     array(
         'method'    => 'token',
         'original'  => 'strtok',
-        'params'    => array($this->string, ',.'),
+        'params'    => array($this->string, ' !'),
         'note'      => 'note: alias for Str::tok(). Why use "tok" instead of "token"? 2 characters less typing, but 10 times less readable.',
         'note_type' => 'note'
     ),

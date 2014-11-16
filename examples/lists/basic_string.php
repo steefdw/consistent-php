@@ -23,24 +23,24 @@ return array(
     array(
         'method'    => 'chr',
         'original'  => 'strchr',
-        'params'    => array(',', $this->string),
-        'old_params' => array($this->string, ','),
+        'params'    => array(' ', $this->string),
+        'old_params' => array($this->string, ' '),
         'note'      => 'note: reversed needle-haystack',
         'note_type' => 'note'
     ),
     array(
         'method'    => 'chr',
         'original'  => 'strchr',
-        'params'    => array(',', $this->string, true),
-        'old-params' => array($this->string, ',', true),
+        'params'    => array(' ', $this->string, true),
+        'old-params' => array($this->string, ' ', true),
         'note'      => 'note: reversed needle-haystack',
         'note_type' => 'note'
     ),
     array(
         'method'    => 'rchr',
         'original'  => 'strrchr',
-        'params'    => array(',', $this->string),
-        'old_params' => array($this->string, ','),
+        'params'    => array(' ', $this->string),
+        'old_params' => array($this->string, ' '),
         'note'      => 'note: reversed needle-haystack',
         'note_type' => 'note'
     ),
@@ -97,32 +97,32 @@ return array(
     array(
         'method'    => 'pbrk',
         'original'  => 'strpbrk',
-        'params'    => array(',', $this->string),
-        'old_params' => array($this->string, ','),
+        'params'    => array(' ', $this->string),
+        'old_params' => array($this->string, ' '),
         'note'      => 'note: reversed needle-haystack (has the alias Str::position_break()',
         'note_type' => 'warn'
     ),
     array(
         'method'    => 'pos',
         'original'  => 'strpos',
-        'params'    => array('low', $this->string),
-        'old_params' => array($this->string, 'low'),
+        'params'    => array('o', $this->string),
+        'old_params' => array($this->string, 'o'),
         'note'      => 'note: reversed needle-haystack',
         'note_type' => 'note'
     ),
     array(
         'method'    => 'ipos',
         'original'  => 'stripos',
-        'params'    => array('LOW', $this->string),
-        'old_params' => array($this->string, 'LOW'),
+        'params'    => array('O', $this->string),
+        'old_params' => array($this->string, 'O'),
         'note'      => 'note: reversed needle-haystack',
         'note_type' => 'note'
     ),
     array(
         'method'    => 'rpos',
         'original'  => 'strrpos',
-        'params'    => array(',', $this->string),
-        'old_params' => array($this->string, ','),
+        'params'    => array(' ', $this->string),
+        'old_params' => array($this->string, ' '),
         'note'      => 'note: reversed needle-haystack',
         'note_type' => 'note'
     ),
@@ -142,12 +142,12 @@ return array(
     array(
         'method'   => 'replace',
         'original' => 'str_replace',
-        'params'   => array('low', 'LOW', $this->string),
+        'params'   => array('World', 'Earth', $this->string),
     ),
     array(
         'method'   => 'ireplace',
         'original' => 'str_ireplace',
-        'params'   => array('LOW', 'LOW', $this->string),
+        'params'   => array('wORLD', 'EARTH', $this->string),
     ),
     array(
         'method'   => 'rev',
@@ -174,7 +174,7 @@ return array(
     array(
         'method'   => 'spn',
         'original' => 'strspn',
-        'params'   => array($this->string, 'UP'),
+        'params'   => array($this->string, 'lo'),
     ),
     array(
         'method'   => 'cspn',
@@ -184,16 +184,16 @@ return array(
     array(
         'method'    => 'string',
         'original'  => 'strstr',
-        'params'    => array('low', $this->string),
-        'old_params' => array($this->string, 'low'),
+        'params'    => array('lo', $this->string),
+        'old_params' => array($this->string, 'lo'),
         'note'      => 'we can\'t call Str::str() :(<br><span style="color:green">note: reversed needle-haystack</span>',
         'note_type' => 'warn'
     ),
     array(
         'method'    => 'istring',
         'original'  => 'stristr',
-        'params'    => array('LOW', $this->string),
-        'old_params' => array($this->string, 'LOW'),
+        'params'    => array('LO', $this->string),
+        'old_params' => array($this->string, 'LO'),
         'note'      => 'we can\'t call Str::str() :(<br><span style="color:green">note: reversed needle-haystack</span>',
         'note_type' => 'warn'
     ),
