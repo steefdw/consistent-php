@@ -28,7 +28,7 @@ namespace Consistent;
 
 class Arr extends Logic_Arr {
 
-    
+
 	/**
 	 * Add an element to an array using "dot" notation if it doesn't exist.
 	 *
@@ -219,7 +219,7 @@ class Arr extends Logic_Arr {
 	/**
 	 * Get an item from an array using "dot" notation.
 	 *
-	 * @param  string  $key         
+	 * @param  string  $key
 	 * @param  array   $array
 	 * @param  mixed   $default
 	 * @return mixed
@@ -234,7 +234,7 @@ class Arr extends Logic_Arr {
 		{
 			if ( ! is_array($array) || ! array_key_exists($segment, $array))
 			{
-				return value($default);
+				return $default;
 			}
 
 			$array = $array[$segment];
@@ -372,5 +372,5 @@ class Arr extends Logic_Arr {
 
 		return $filtered;
 	}
-        
+
 }
