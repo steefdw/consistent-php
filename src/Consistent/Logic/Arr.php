@@ -32,30 +32,24 @@ class Logic_Arr extends Basic_Arr {
      * (PHP 4 &gt;= 4.2.0, PHP 5)<br/>
      * Changes the case of all keys in an array to uppercase
      * @link http://php.net/manual/en/function.array-change-key-case.php
-     * @param array $array <p>
-     * The array to work on
-     * </p>
      * @return array an array with its keys uppercased, or <b>FALSE</b> if
      * <i>array</i> is not an array.
      */
-    static function upper(array $array)
+    public function upper()
     {
-        return array_change_key_case($array, CASE_UPPER);
+        return array_change_key_case($this->array, CASE_UPPER);
     }
 
     /**
      * (PHP 4 &gt;= 4.2.0, PHP 5)<br/>
      * Changes the case of all keys in an array to lowercase
      * @link http://php.net/manual/en/function.array-change-key-case.php
-     * @param array $array <p>
-     * The array to work on
-     * </p>
      * @return array an array with its keys lowercased, or <b>FALSE</b> if
      * <i>array</i> is not an array.
      */
-    static function lower(array $array)
+    public function lower()
     {
-        return array_change_key_case($array, CASE_LOWER);
+        return array_change_key_case($this->array, CASE_LOWER);
     }
 
 }

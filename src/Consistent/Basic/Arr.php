@@ -31,9 +31,6 @@ class Basic_Arr {
      * (PHP 4 &gt;= 4.2.0, PHP 5)<br/>
      * Changes the case of all keys in an array
      * @link http://php.net/manual/en/function.array-change-key-case.php
-     * @param array $array <p>
-     * The array to work on
-     * </p>
      * @param int $case [optional] <p>
      * Either <b>CASE_UPPER</b> or
      * <b>CASE_LOWER</b> (default)
@@ -41,21 +38,18 @@ class Basic_Arr {
      * @return array an array with its keys lower or uppercased, or <b>FALSE</b> if
      * <i>array</i> is not an array.
      */
-    static function change_key_case(array $array, $case = false)
+    public function change_key_case($case = false)
     {
         if($case === false)
             $case = CASE_LOWER;
 
-        return array_change_key_case($array, $case);
+        return array_change_key_case($this->array, $case);
     }
 
     /**
      * (PHP 4 &gt;= 4.2.0, PHP 5)<br/>
      * Split an array into chunks
      * @link http://php.net/manual/en/function.array-chunk.php
-     * @param array $array <p>
-     * The array to work on
-     * </p>
      * @param int $size <p>
      * The size of each chunk
      * </p>
@@ -66,19 +60,15 @@ class Basic_Arr {
      * @return array a multidimensional numerically indexed array, starting with zero,
      * with each dimension containing <i>size</i> elements.
      */
-    static function chunk(array $array, $size, $preserve_keys = false)
+    public function chunk($size, $preserve_keys = false)
     {
-        return array_chunk($array, $size, $preserve_keys);
+        return array_chunk($this->array, $size, $preserve_keys);
     }
 
     /**
      * (PHP 5 &gt;= 5.5.0)<br/>
      * Return the values from a single column in the input array
      * @link http://php.net/manual/en/function.array-column.php
-     * @param array $array <p>
-     * A multi-dimensional array (record set) from which to pull a column of
-     * values.
-     * </p>
      * @param mixed $column_key <p>
      * The column of values to return. This value may be the integer key of the
      * column you wish to retrieve, or it may be the string key name for an
@@ -92,9 +82,9 @@ class Basic_Arr {
      * </p>
      * @return array an array of values representing a single column from the input array.
      */
-    static function column(array $array, $column_key, $index_key = null)
+    public function column($column_key, $index_key = null)
     {
-        return array_column($array, $column_key, $index_key);
+        return array_column($this->array, $column_key, $index_key);
     }
 
 }
