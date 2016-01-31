@@ -25,7 +25,7 @@ require_once dirname(_ _DIR_ _) . '/vendor/autoload.php'; // Autoload files usin
 ```php
 if(function_exists('arr') === false)
 {
-    function Arr($array)
+    function Arr(&$array = [])
     {
         return new \Consistent\Arr($array);
     }

@@ -28,9 +28,9 @@ namespace Consistent;
 
 class Arr extends Logic_Arr {
 
-    public function __construct(array $array)
+    public function __construct(array &$array)
     {
-        $this->array = $array;
+        $this->array = &$array;
     }
 
     /**
