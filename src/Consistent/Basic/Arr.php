@@ -28,72 +28,9 @@ namespace Consistent;
 class Basic_Arr {
 
     /**
-     * (PHP 4 &gt;= 4.2.0, PHP 5)<br/>
-     * Changes the case of all keys in an array
-     * @link http://php.net/manual/en/function.array-change-key-case.php
-     * @param int $case [optional] <p>
-     * Either <b>CASE_UPPER</b> or
-     * <b>CASE_LOWER</b> (default)
-     * </p>
-     * @return array an array with its keys lower or uppercased, or <b>FALSE</b> if
-     * <i>array</i> is not an array.
-     */
-    public function change_key_case($case = false)
-    {
-        if($case === false)
-            $case = CASE_LOWER;
-
-        return array_change_key_case($this->array, $case);
-    }
-
-    /**
-     * (PHP 4 &gt;= 4.2.0, PHP 5)<br/>
-     * Split an array into chunks
-     * @link http://php.net/manual/en/function.array-chunk.php
-     * @param int $size <p>
-     * The size of each chunk
-     * </p>
-     * @param bool $preserve_keys [optional] <p>
-     * When set to <b>TRUE</b> keys will be preserved.
-     * Default is <b>FALSE</b> which will reindex the chunk numerically
-     * </p>
-     * @return array a multidimensional numerically indexed array, starting with zero,
-     * with each dimension containing <i>size</i> elements.
-     */
-    public function chunk($size, $preserve_keys = false)
-    {
-        return array_chunk($this->array, $size, $preserve_keys);
-    }
-
-    /**
-     * (PHP 5 &gt;= 5.5.0)<br/>
-     * Return the values from a single column in the input array
-     * @link http://php.net/manual/en/function.array-column.php
-     * @param mixed $column_key <p>
-     * The column of values to return. This value may be the integer key of the
-     * column you wish to retrieve, or it may be the string key name for an
-     * associative array. It may also be <b>NULL</b> to return complete arrays
-     * (useful together with <i>index_key</i> to reindex the
-     * array).
-     * </p>
-     * @param mixed $index_key [optional] <p>
-     * The column to use as the index/keys for the returned array. This value
-     * may be the integer key of the column, or it may be the string key name.
-     * </p>
-     * @return array an array of values representing a single column from the input array.
-     */
-    public function column($column_key, $index_key = null)
-    {
-        return array_column($this->array, $column_key, $index_key);
-    }
-
-    /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array by key
      * @link http://php.net/manual/en/function.ksort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param int $sort_flags [optional] <p>
      * You may modify the behavior of the sort using the optional
      * parameter <i>sort_flags</i>, for details
@@ -101,18 +38,15 @@ class Basic_Arr {
      * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function ksort(array &$array, $sort_flags = 'SORT_REGULAR')
+    public function ksort($sort_flags = SORT_REGULAR)
     {
-
+        return ksort($this->array, $sort_flags);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array by key in reverse order
      * @link http://php.net/manual/en/function.krsort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param int $sort_flags [optional] <p>
      * You may modify the behavior of the sort using the optional parameter
      * <i>sort_flags</i>, for details see
@@ -120,46 +54,37 @@ class Basic_Arr {
      * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function krsort(array &$array, $sort_flags = 'SORT_REGULAR')
+    public function krsort($sort_flags = SORT_REGULAR)
     {
-
+        return krsort($this->array, $sort_flags);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array using a "natural order" algorithm
      * @link http://php.net/manual/en/function.natsort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function natsort(array &$array)
+    public function natsort()
     {
-
+        return natsort($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array using a case insensitive "natural order" algorithm
      * @link http://php.net/manual/en/function.natcasesort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function natcasesort(array &$array)
+    public function natcasesort()
     {
-
+        return natcasesort($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array and maintain index association
      * @link http://php.net/manual/en/function.asort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param int $sort_flags [optional] <p>
      * You may modify the behavior of the sort using the optional
      * parameter <i>sort_flags</i>, for details
@@ -167,18 +92,15 @@ class Basic_Arr {
      * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function asort(array &$array, $sort_flags = 'SORT_REGULAR')
+    public function asort($sort_flags = SORT_REGULAR)
     {
-
+        return asort($this->array, $sort_flags);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array in reverse order and maintain index association
      * @link http://php.net/manual/en/function.arsort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param int $sort_flags [optional] <p>
      * You may modify the behavior of the sort using the optional parameter
      * <i>sort_flags</i>, for details see
@@ -186,18 +108,15 @@ class Basic_Arr {
      * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function arsort(array &$array, $sort_flags = 'SORT_REGULAR')
+    public function arsort($sort_flags = SORT_REGULAR)
     {
-
+        return arsort($this->array, $sort_flags);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array
      * @link http://php.net/manual/en/function.sort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param int $sort_flags [optional] <p>
      * The optional second parameter <i>sort_flags</i>
      * may be used to modify the sorting behavior using these values:
@@ -208,18 +127,15 @@ class Basic_Arr {
      * (don't change types)
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function sort(array &$array, $sort_flags = 'SORT_REGULAR')
+    public function sort($sort_flags = SORT_REGULAR)
     {
-
+        return sort($this->array, $sort_flags);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array in reverse order
      * @link http://php.net/manual/en/function.rsort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param int $sort_flags [optional] <p>
      * You may modify the behavior of the sort using the optional
      * parameter <i>sort_flags</i>, for details see
@@ -227,18 +143,15 @@ class Basic_Arr {
      * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function rsort(array &$array, $sort_flags = 'SORT_REGULAR')
+    public function rsort($sort_flags = SORT_REGULAR)
     {
-
+        return rsort($this->array, $sort_flags);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array by values using a user-defined comparison function
      * @link http://php.net/manual/en/function.usort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param callable $value_compare_func <p>
      * The comparison function must return an integer less than, equal to, or greater than zero if the first argument is considered to be respectively less than, equal to, or greater than the second.
      * </p>
@@ -252,68 +165,56 @@ class Basic_Arr {
      * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function usort(array &$array, callable $value_compare_func)
+    public function usort(callable $value_compare_func)
     {
-
+        return usort($this->array, $value_compare_func);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array with a user-defined comparison function and maintain index association
      * @link http://php.net/manual/en/function.uasort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param callable $value_compare_func <p>
      * See <b>usort</b> and <b>uksort</b> for
      * examples of user-defined comparison functions.
      * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function uasort(array &$array, callable $value_compare_func)
+    public function uasort(callable $value_compare_func)
     {
-
+        return uasort($this->array, $value_compare_func);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort an array by keys using a user-defined comparison function
      * @link http://php.net/manual/en/function.uksort.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param callable $key_compare_func <p>
      * The comparison function must return an integer less than, equal to, or greater than zero if the first argument is considered to be respectively less than, equal to, or greater than the second.
      * </p>
      * int<b>callback</b><b>mixed<i>a</i></b><b>mixed<i>b</i></b>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function uksort(array &$array, callable $key_compare_func)
+    public function uksort(callable $key_compare_func)
     {
-
+        return uksort($this->array, $key_compare_func);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Shuffle an array
      * @link http://php.net/manual/en/function.shuffle.php
-     * @param array $array <p>
-     * The array.
-     * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function shuffle(array &$array)
+    public function shuffle()
     {
-
+        return shuffle($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Apply a user function to every member of an array
      * @link http://php.net/manual/en/function.array-walk.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param callable $callback <p>
      * Typically, <i>callback</i> takes on two parameters.
      * The <i>array</i> parameter's value being the first, and
@@ -347,18 +248,15 @@ class Basic_Arr {
      * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function array_walk(array &$array, callable $callback, $userdata = null)
+    public function walk(callable $callback, $userdata = null)
     {
-
+        return array_walk($this->array, $callback, $userdata);
     }
 
     /**
      * (PHP 5)<br/>
      * Apply a user function recursively to every member of an array
      * @link http://php.net/manual/en/function.array-walk-recursive.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param callable $callback <p>
      * Typically, <i>callback</i> takes on two parameters.
      * The <i>array</i> parameter's value being the first, and
@@ -379,18 +277,15 @@ class Basic_Arr {
      * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function array_walk_recursive(array &$array, callable $callback, $userdata = null)
+    public function walk_recursive(callable $callback, $userdata = null)
     {
-
+        return array_walk_recursive($this->array, $callback, $userdata);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Count all elements in an array, or something in an object
      * @link http://php.net/manual/en/function.count.php
-     * @param mixed $array_or_countable <p>
-     * An array or <b>Countable</b> object.
-     * </p>
      * @param int $mode [optional] <p>
      * If the optional <i>mode</i> parameter is set to
      * <b>COUNT_RECURSIVE</b> (or 1), <b>count</b>
@@ -415,108 +310,87 @@ class Basic_Arr {
      * but it may also return 0 for a variable that has been initialized with an
      * empty array. Use <b>isset</b> to test if a variable is set.
      */
-    function count($array_or_countable, $mode = 'COUNT_NORMAL')
+    public function count($mode = COUNT_NORMAL)
     {
-
+        return count($this->array, $mode);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Set the internal pointer of an array to its last element
      * @link http://php.net/manual/en/function.end.php
-     * @param array $array <p>
-     * The array. This array is passed by reference because it is modified by
-     * the function. This means you must pass it a real variable and not
-     * a function returning an array because only actual variables may be
-     * passed by reference.
-     * </p>
      * @return mixed the value of the last element or <b>FALSE</b> for empty array.
      */
-    function end(array &$array)
+    public function end()
     {
-
+        return end($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Rewind the internal array pointer
      * @link http://php.net/manual/en/function.prev.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @return mixed the array value in the previous place that's pointed to by
      * the internal array pointer, or <b>FALSE</b> if there are no more
      * elements.
      */
-    function prev(array &$array)
+    public function prev()
     {
-
+        return prev($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Advance the internal array pointer of an array
      * @link http://php.net/manual/en/function.next.php
-     * @param array $array <p>
-     * The array being affected.
-     * </p>
      * @return mixed the array value in the next place that's pointed to by the
      * internal array pointer, or <b>FALSE</b> if there are no more elements.
      */
-    function next(array &$array)
+    public function next()
     {
-
+        return next($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Set the internal pointer of an array to its first element
      * @link http://php.net/manual/en/function.reset.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @return mixed the value of the first array element, or <b>FALSE</b> if the array is
      * empty.
      */
-    function reset(array &$array)
+    public function reset()
     {
-
+        return reset($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Return the current element in an array
      * @link http://php.net/manual/en/function.current.php
-     * @param array $array <p>
-     * The array.
-     * </p>
      * @return mixed The <b>current</b> function simply returns the
      * value of the array element that's currently being pointed to by the
      * internal pointer. It does not move the pointer in any way. If the
      * internal pointer points beyond the end of the elements list or the array is
      * empty, <b>current</b> returns <b>FALSE</b>.
      */
-    function current(array &$array)
+    public function current()
     {
-
+        return current($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Fetch a key from an array
      * @link http://php.net/manual/en/function.key.php
-     * @param array $array <p>
-     * The array.
-     * </p>
      * @return mixed The <b>key</b> function simply returns the
      * key of the array element that's currently being pointed to by the
      * internal pointer. It does not move the pointer in any way. If the
      * internal pointer points beyond the end of the elements list or the array is
      * empty, <b>key</b> returns <b>NULL</b>.
      */
-    function key(array &$array)
+    public function key()
     {
-
+        return key($this->array);
     }
 
     /**
@@ -529,9 +403,9 @@ class Basic_Arr {
      * @return mixed <b>min</b> returns the numerically lowest of the
      * parameter values.
      */
-    function min(array $values)
+    public function min()
     {
-
+        return min($this->array);
     }
 
     /**
@@ -555,9 +429,9 @@ class Basic_Arr {
      * When given a string it will be cast as an integer
      * when comparing.
      */
-    function max(array $values)
+    public function max()
     {
-
+        return max($this->array);
     }
 
     /**
@@ -571,9 +445,6 @@ class Basic_Arr {
      * If <i>needle</i> is a string, the comparison is done
      * in a case-sensitive manner.
      * </p>
-     * @param array $haystack <p>
-     * The array.
-     * </p>
      * @param bool $strict [optional] <p>
      * If the third parameter <i>strict</i> is set to <b>TRUE</b>
      * then the <b>in_array</b> function will also check the
@@ -583,9 +454,9 @@ class Basic_Arr {
      * @return bool <b>TRUE</b> if <i>needle</i> is found in the array,
      * <b>FALSE</b> otherwise.
      */
-    function in_array($needle, array $haystack, $strict = '&false;')
+    public function in_array($needle, $strict = false)
     {
-
+        return in_array($needle, $this->array, $strict);
     }
 
     /**
@@ -598,9 +469,6 @@ class Basic_Arr {
      * <p>
      * If <i>needle</i> is a string, the comparison is done
      * in a case-sensitive manner.
-     * </p>
-     * @param array $haystack <p>
-     * The array.
      * </p>
      * @param bool $strict [optional] <p>
      * If the third parameter <i>strict</i> is set to <b>TRUE</b>
@@ -620,16 +488,15 @@ class Basic_Arr {
      * all matching values, use <b>array_keys</b> with the optional
      * <i>search_value</i> parameter instead.
      */
-    function array_search($needle, array $haystack, $strict = false)
+    public function search($needle, $strict = false)
     {
-
+        return array_search($needle, $this->array, $strict);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Import variables into the current symbol table from an array
      * @link http://php.net/manual/en/function.extract.php
-     * @param array $array <p>
      * Note that <i>prefix</i> is only required if
      * <i>flags</i> is <b>EXTR_PREFIX_SAME</b>,
      * <b>EXTR_PREFIX_ALL</b>, <b>EXTR_PREFIX_INVALID</b>
@@ -652,9 +519,9 @@ class Basic_Arr {
      * @return int the number of variables successfully imported into the symbol
      * table.
      */
-    function extract(array &$array, $flags = 'EXTR_OVERWRITE', $prefix = null)
+    public function extract($flags = 'EXTR_OVERWRITE', $prefix = null)
     {
-
+        return extract($this->array, $flags, $prefix);
     }
 
     /**
@@ -671,10 +538,12 @@ class Basic_Arr {
      * @param mixed $_ [optional]
      * @return array the output array with all the variables added to it.
      */
-    function compact($varname1, $_ = null)
+    /*
+    public function todo_compact($varname1, $_ = null)
     {
-
+        // TODO: not clear why this should be added
     }
+    */
 
     /**
      * (PHP 4 &gt;= 4.2.0, PHP 5)<br/>
@@ -699,9 +568,10 @@ class Basic_Arr {
      * </p>
      * @return array the filled array
      */
-    function array_fill($start_index, $num, $value)
+    public function fill($start_index, $num, $value)
     {
-
+        // Steef Note: should this be a static function?
+        return array_fill($start_index, $num, $value);
     }
 
     /**
@@ -717,9 +587,9 @@ class Basic_Arr {
      * </p>
      * @return array the filled array
      */
-    function array_fill_keys(array $keys, $value)
+    public function fill_keys($value)
     {
-
+        return array_fill_keys($this->array, $value);
     }
 
     /**
@@ -742,18 +612,16 @@ class Basic_Arr {
      * @return array an array of elements from <i>start</i> to
      * <i>end</i>, inclusive.
      */
-    function range($start, $end, $step = 1)
+    public function range($start, $end, $step = 1)
     {
-
+        // Steef Note: should this be a static function?
+        return range($start, $end, $step);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Sort multiple or multi-dimensional arrays
      * @link http://php.net/manual/en/function.array-multisort.php
-     * @param array $array1 <p>
-     * An array being sorted.
-     * </p>
      * @param mixed $array1_sort_order [optional] <p>
      * The order used to sort the previous array argument. Either
      * <b>SORT_ASC</b> to sort ascendingly or <b>SORT_DESC</b>
@@ -775,85 +643,77 @@ class Basic_Arr {
      * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function array_multisort(array &$array1, $array1_sort_order = 'SORT_ASC', $array1_sort_flags = 'SORT_REGULAR', $_ = null)
+    public function multisort($array1_sort_order = SORT_ASC, $array1_sort_flags = SORT_REGULAR)
     {
+        // Steef note: not clear why this should be added, because we're only using 1 array here
+        array_multisort($this->array, $array1_sort_order, $array1_sort_flags);
 
+        return $this;
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Push one or more elements onto the end of array
      * @link http://php.net/manual/en/function.array-push.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param mixed $value1 <p>
      * The first value to push onto the end of the <i>array</i>.
      * </p>
      * @param mixed $_ [optional]
      * @return int the new number of elements in the array.
      */
-    function array_push(array &$array, $value1, $_ = null)
+    public function push($value1)
     {
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->push($v1, $v2, $v3)
+        $this->array[] = $value1;
 
+        return count($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Pop the element off the end of array
      * @link http://php.net/manual/en/function.array-pop.php
-     * @param array $array <p>
-     * The array to get the value from.
-     * </p>
      * @return mixed the last value of <i>array</i>.
      * If <i>array</i> is empty (or is not an array),
      * <b>NULL</b> will be returned.
      */
-    function array_pop(array &$array)
+    public function pop()
     {
-
+        return array_pop($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Shift an element off the beginning of array
      * @link http://php.net/manual/en/function.array-shift.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @return mixed the shifted value, or <b>NULL</b> if <i>array</i> is
      * empty or is not an array.
      */
-    function array_shift(array &$array)
+    public function shift()
     {
-
+        return array_shift($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Prepend one or more elements to the beginning of an array
      * @link http://php.net/manual/en/function.array-unshift.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param mixed $value1 <p>
      * First value to prepend.
      * </p>
      * @param mixed $_ [optional]
      * @return int the new number of elements in the <i>array</i>.
      */
-    function array_unshift(array &$array, $value1, $_ = null)
+    public function unshift($value1, $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->unshift($v1, $v2, $v3)
+        return array_unshift($this->array, $value1);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Remove a portion of the array and replace it with something else
      * @link http://php.net/manual/en/function.array-splice.php
-     * @param array $input <p>
-     * The input array.
-     * </p>
      * @param int $offset <p>
      * If <i>offset</i> is positive then the start of removed
      * portion is at that offset from the beginning of the
@@ -892,18 +752,15 @@ class Basic_Arr {
      * </p>
      * @return array the array consisting of the extracted elements.
      */
-    function array_splice(array &$input, $offset, $length = null, $replacement = 'array()')
+    public function splice($offset, $length = null, $replacement = array())
     {
-
+        return array_splice($this->array, $offset, $length, $replacement);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Extract a slice of the array
      * @link http://php.net/manual/en/function.array-slice.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param int $offset <p>
      * If <i>offset</i> is non-negative, the sequence will
      * start at that offset in the <i>array</i>. If
@@ -928,52 +785,51 @@ class Basic_Arr {
      * </p>
      * @return array the slice.
      */
-    function array_slice(array $array, $offset, $length = null, $preserve_keys = false)
+    public function slice($offset, $length = null, $preserve_keys = false)
     {
-
+        return array_slice($this->array, $offset, $length, $preserve_keys);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Merge one or more arrays
      * @link http://php.net/manual/en/function.array-merge.php
-     * @param array $array1 <p>
-     * Initial array to merge.
+     * @param array $array2 <p>
+     * Variable list of arrays to recursively merge.
      * </p>
      * @param array $_ [optional] <p>
      * Variable list of arrays to merge.
      * </p>
      * @return array the resulting array.
      */
-    function array_merge(array $array1, array $_ = null)
+    public function merge(array $array2, array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->merge($v1, $v2, $v3)
+        array_merge($this->array, $array2);
     }
 
     /**
      * (PHP 4 &gt;= 4.0.1, PHP 5)<br/>
      * Merge two or more arrays recursively
      * @link http://php.net/manual/en/function.array-merge-recursive.php
-     * @param array $array1 <p>
-     * Initial array to merge.
+     * @param array $array2 <p>
+     * Variable list of arrays to recursively merge.
      * </p>
      * @param array $_ [optional] <p>
      * Variable list of arrays to recursively merge.
      * </p>
      * @return array An array of values resulted from merging the arguments together.
      */
-    function array_merge_recursive(array $array1, array $_ = null)
+    public function merge_recursive(array $array2, array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->merge($v1, $v2, $v3)
+        return array_merge_recursive($this->array, $array2);
     }
 
     /**
      * (PHP 5 &gt;= 5.3.0)<br/>
      * Replaces elements from passed arrays into the first array
      * @link http://php.net/manual/en/function.array-replace.php
-     * @param array $array1 <p>
-     * The array in which elements are replaced.
-     * </p>
      * @param array $array2 <p>
      * The array from which elements will be extracted.
      * </p>
@@ -983,18 +839,16 @@ class Basic_Arr {
      * </p>
      * @return array an array, or <b>NULL</b> if an error occurs.
      */
-    function array_replace(array $array1, array $array2, array $_ = null)
+    public function replace(array $array2, array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->merge($v1, $v2, $v3)
+        return array_replace($this->array, $array2);
     }
 
     /**
      * (PHP 5 &gt;= 5.3.0)<br/>
      * Replaces elements from passed arrays into the first array recursively
      * @link http://php.net/manual/en/function.array-replace-recursive.php
-     * @param array $array1 <p>
-     * The array in which elements are replaced.
-     * </p>
      * @param array $array2 <p>
      * The array from which elements will be extracted.
      * </p>
@@ -1003,18 +857,16 @@ class Basic_Arr {
      * </p>
      * @return array an array, or <b>NULL</b> if an error occurs.
      */
-    function array_replace_recursive(array $array1, array $array2, array $_ = null)
+    public function replace_recursive(array $array2, array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->merge($v1, $v2, $v3)
+        return array_replace_recursive($this->array, $array2);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Return all the keys or a subset of the keys of an array
      * @link http://php.net/manual/en/function.array-keys.php
-     * @param array $array <p>
-     * An array containing keys to return.
-     * </p>
      * @param mixed $search_value [optional] <p>
      * If specified, then only keys containing these values are returned.
      * </p>
@@ -1023,48 +875,40 @@ class Basic_Arr {
      * </p>
      * @return array an array of all the keys in <i>array</i>.
      */
-    function array_keys(array $array, $search_value = null, $strict = false)
+    public function keys($search_value = null, $strict = false)
     {
-
+        return (is_null($search_value))
+            ? array_keys($this->array)
+            : array_keys($this->array, $search_value, $strict);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Return all the values of an array
      * @link http://php.net/manual/en/function.array-values.php
-     * @param array $array <p>
-     * The array.
-     * </p>
      * @return array an indexed array of values.
      */
-    function array_values(array $array)
+    public function values()
     {
-
+        return array_values($this->array);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Counts all the values of an array
      * @link http://php.net/manual/en/function.array-count-values.php
-     * @param array $array <p>
-     * The array of values to count
-     * </p>
      * @return array an associative array of values from <i>array</i> as
      * keys and their count as value.
      */
-    function array_count_values(array $array)
+    public function count_values()
     {
-
+        return array_count_values($this->array);
     }
 
     /**
      * (PHP 5 &gt;= 5.5.0)<br/>
      * Return the values from a single column in the input array
      * @link http://php.net/manual/en/function.array-column.php
-     * @param array $array <p>
-     * A multi-dimensional array (record set) from which to pull a column of
-     * values.
-     * </p>
      * @param mixed $column_key <p>
      * The column of values to return. This value may be the integer key of the
      * column you wish to retrieve, or it may be the string key name for an
@@ -1078,36 +922,30 @@ class Basic_Arr {
      * </p>
      * @return array an array of values representing a single column from the input array.
      */
-    function array_column(array $array, $column_key, $index_key = null)
+    public function column($column_key, $index_key = null)
     {
-
+        return array_column($this->array, $column_key, $index_key);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Return an array with elements in reverse order
      * @link http://php.net/manual/en/function.array-reverse.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param bool $preserve_keys [optional] <p>
      * If set to <b>TRUE</b> numeric keys are preserved.
      * Non-numeric keys are not affected by this setting and will always be preserved.
      * </p>
      * @return array the reversed array.
      */
-    function array_reverse(array $array, $preserve_keys = false)
+    public function reverse($preserve_keys = false)
     {
-
+        return array_reverse($this->array, $preserve_keys);
     }
 
     /**
      * (PHP 4 &gt;= 4.0.5, PHP 5)<br/>
      * Iteratively reduce the array to a single value using a callback function
      * @link http://php.net/manual/en/function.array-reduce.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param callable $callback mixed<b>callback</b>
      * <b>mixed<i>carry</i></b>
      * <b>mixed<i>item</i></b>
@@ -1128,18 +966,15 @@ class Basic_Arr {
      * If the array is empty and <i>initial</i> is not passed,
      * <b>array_reduce</b> returns <b>NULL</b>.
      */
-    function array_reduce(array $array, callable $callback, $initial = null)
+    public function reduce(callable $callback, $initial = null)
     {
-
+        return array_reduce($this->array, $callback, $initial);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Pad array to the specified length with a value
      * @link http://php.net/manual/en/function.array-pad.php
-     * @param array $array <p>
-     * Initial array of values to pad.
-     * </p>
      * @param int $size <p>
      * New size of the array.
      * </p>
@@ -1155,32 +990,26 @@ class Basic_Arr {
      * than or equal to the length of the <i>array</i> then no
      * padding takes place.
      */
-    function array_pad(array $array, $size, $value)
+    public function pad($size, $value)
     {
-
+        return array_pad($this->array, $size, $value);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Exchanges all keys with their associated values in an array
      * @link http://php.net/manual/en/function.array-flip.php
-     * @param array $array <p>
-     * An array of key/value pairs to be flipped.
-     * </p>
      * @return array the flipped array on success and <b>NULL</b> on failure.
      */
-    function array_flip(array $array)
+    public function flip()
     {
-
+        return array_flip($this->array);
     }
 
     /**
      * (PHP 4 &gt;= 4.2.0, PHP 5)<br/>
      * Changes the case of all keys in an array
      * @link http://php.net/manual/en/function.array-change-key-case.php
-     * @param array $array <p>
-     * The array to work on
-     * </p>
      * @param int $case [optional] <p>
      * Either <b>CASE_UPPER</b> or
      * <b>CASE_LOWER</b> (default)
@@ -1188,18 +1017,15 @@ class Basic_Arr {
      * @return array an array with its keys lower or uppercased, or <b>FALSE</b> if
      * <i>array</i> is not an array.
      */
-    function array_change_key_case(array $array, $case = 'CASE_LOWER')
+    public function change_key_case($case = CASE_LOWER)
     {
-
+        return array_change_key_case($this->array, $case);
     }
 
     /**
      * (PHP 4, PHP 5)<br/>
      * Pick one or more random entries out of an array
      * @link http://php.net/manual/en/function.array-rand.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param int $num [optional] <p>
      * Specifies how many entries should be picked.
      * </p>
@@ -1210,18 +1036,15 @@ class Basic_Arr {
      * than there are in the array will result in an
      * <b>E_WARNING</b> level error, and NULL will be returned.
      */
-    function array_rand(array $array, $num = 1)
+    public function rand($num = 1)
     {
-
+        return array_rand($this->array, $num);
     }
 
     /**
      * (PHP 4 &gt;= 4.0.1, PHP 5)<br/>
      * Removes duplicate values from an array
      * @link http://php.net/manual/en/function.array-unique.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @param int $sort_flags [optional] <p>
      * The optional second parameter <i>sort_flags</i>
      * may be used to modify the sorting behavior using these values:
@@ -1232,18 +1055,15 @@ class Basic_Arr {
      * (don't change types)
      * @return array the filtered array.
      */
-    function array_unique(array $array, $sort_flags = 'SORT_STRING')
+    public function unique($sort_flags = SORT_STRING)
     {
-
+        return array_unique($this->array, $sort_flags);
     }
 
     /**
      * (PHP 4 &gt;= 4.0.1, PHP 5)<br/>
      * Computes the intersection of arrays
      * @link http://php.net/manual/en/function.array-intersect.php
-     * @param array $array1 <p>
-     * The array with master values to check.
-     * </p>
      * @param array $array2 <p>
      * An array to compare values against.
      * </p>
@@ -1253,18 +1073,16 @@ class Basic_Arr {
      * @return array an array containing all of the values in
      * <i>array1</i> whose values exist in all of the parameters.
      */
-    function array_intersect(array $array1, array $array2, array $_ = null)
+    public function intersect(array $array2, array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->merge($v1, $v2, $v3)
+        return array_intersect($this->array, $array2);
     }
 
     /**
      * (PHP 5 &gt;= 5.1.0)<br/>
      * Computes the intersection of arrays using keys for comparison
      * @link http://php.net/manual/en/function.array-intersect-key.php
-     * @param array $array1 <p>
-     * The array with master keys to check.
-     * </p>
      * @param array $array2 <p>
      * An array to compare keys against.
      * </p>
@@ -1275,18 +1093,16 @@ class Basic_Arr {
      * <i>array1</i> which have keys that are present in all
      * arguments.
      */
-    function array_intersect_key(array $array1, array $array2, array $_ = null)
+    public function intersect_key(array $array2, array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->merge($v1, $v2, $v3)
+        return array_intersect_key($this->array, $array2);
     }
 
     /**
      * (PHP 5 &gt;= 5.1.0)<br/>
      * Computes the intersection of arrays using a callback function on the keys for comparison
      * @link http://php.net/manual/en/function.array-intersect-ukey.php
-     * @param array $array1 <p>
-     * Initial array for comparison of the arrays.
-     * </p>
      * @param array $array2 <p>
      * First array to compare keys against.
      * </p>
@@ -1300,18 +1116,16 @@ class Basic_Arr {
      * @return array the values of <i>array1</i> whose keys exist
      * in all the arguments.
      */
-    function array_intersect_ukey(array $array1, array $array2, array $_ = null, callable $key_compare_func)
+    public function intersect_ukey(array $array2, array $_ = null, callable $key_compare_func)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_intersect_ukey($this->array, $array2, $key_compare_func);
     }
 
     /**
      * (PHP 5)<br/>
      * Computes the intersection of arrays, compares data by a callback function
      * @link http://php.net/manual/en/function.array-uintersect.php
-     * @param array $array1 <p>
-     * The first array.
-     * </p>
      * @param array $array2 <p>
      * The second array.
      * </p>
@@ -1323,18 +1137,16 @@ class Basic_Arr {
      * @return array an array containing all the values of <i>array1</i>
      * that are present in all the arguments.
      */
-    function array_uintersect(array $array1, array $array2, array $_ = null, callable $value_compare_func)
+    public function uintersect(array $array2, array $_ = null, callable $value_compare_func)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_uintersect($this->array, $array2, $value_compare_func);
     }
 
     /**
      * (PHP 4 &gt;= 4.3.0, PHP 5)<br/>
      * Computes the intersection of arrays with additional index check
      * @link http://php.net/manual/en/function.array-intersect-assoc.php
-     * @param array $array1 <p>
-     * The array with master values to check.
-     * </p>
      * @param array $array2 <p>
      * An array to compare values against.
      * </p>
@@ -1344,18 +1156,16 @@ class Basic_Arr {
      * @return array an associative array containing all the values in
      * <i>array1</i> that are present in all of the arguments.
      */
-    function array_intersect_assoc(array $array1, array $array2, array $_ = null)
+    public function intersect_assoc(array $array2, array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_intersect_assoc($this->array, $array2);
     }
 
     /**
      * (PHP 5)<br/>
      * Computes the intersection of arrays with additional index check, compares data by a callback function
      * @link http://php.net/manual/en/function.array-uintersect-assoc.php
-     * @param array $array1 <p>
-     * The first array.
-     * </p>
      * @param array $array2 <p>
      * The second array.
      * </p>
@@ -1367,21 +1177,19 @@ class Basic_Arr {
      * @return array an array containing all the values of
      * <i>array1</i> that are present in all the arguments.
      */
-    function array_uintersect_assoc(array $array1, array $array2, array $_ = null, callable $value_compare_func)
+    public function uintersect_assoc(array $array2, array $_ = null, callable $value_compare_func)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_uintersect_assoc($this->array, $array2, $value_compare_func);
     }
 
     /**
      * (PHP 5)<br/>
      * Computes the intersection of arrays with additional index check, compares indexes by a callback function
      * @link http://php.net/manual/en/function.array-intersect-uassoc.php
-     * @param array $array1 <p>
-     * Initial array for comparison of the arrays.
-     * </p>
      * @param array $array2 <p>
-     * First array to compare keys against.
-     * </p>
+     * The second array.
+     * </p>*
      * @param array $_ [optional] <p>
      * Variable list of array arguments to compare values against.
      * </p>
@@ -1392,18 +1200,16 @@ class Basic_Arr {
      * @return array the values of <i>array1</i> whose values exist
      * in all of the arguments.
      */
-    function array_intersect_uassoc(array $array1, array $array2, array $_ = null, callable $key_compare_func)
+    public function intersect_uassoc(array $array2, array $_ = null, callable $key_compare_func)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_intersect_uassoc($this->array, $array2, $key_compare_func);
     }
 
     /**
      * (PHP 5)<br/>
      * Computes the intersection of arrays with additional index check, compares data and indexes by a callback functions
      * @link http://php.net/manual/en/function.array-uintersect-uassoc.php
-     * @param array $array1 <p>
-     * The first array.
-     * </p>
      * @param array $array2 <p>
      * The second array.
      * </p>
@@ -1418,18 +1224,16 @@ class Basic_Arr {
      * @return array an array containing all the values of
      * <i>array1</i> that are present in all the arguments.
      */
-    function array_uintersect_uassoc(array $array1, array $array2, array $_ = null, callable $value_compare_func, callable $key_compare_func)
+    public function uintersect_uassoc(array $array2, array $_ = null, callable $value_compare_func, callable $key_compare_func)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_uintersect_uassoc($this->array, $array2, $value_compare_func, $key_compare_func);
     }
 
     /**
      * (PHP 4 &gt;= 4.0.1, PHP 5)<br/>
      * Computes the difference of arrays
      * @link http://php.net/manual/en/function.array-diff.php
-     * @param array $array1 <p>
-     * The array to compare from
-     * </p>
      * @param array $array2 <p>
      * An array to compare against
      * </p>
@@ -1439,18 +1243,16 @@ class Basic_Arr {
      * @return array an array containing all the entries from
      * <i>array1</i> that are not present in any of the other arrays.
      */
-    function array_diff(array $array1, array $array2, array $_ = null)
+    public function diff(array $array2, array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_diff($this->array, $array2);
     }
 
     /**
      * (PHP 5 &gt;= 5.1.0)<br/>
      * Computes the difference of arrays using keys for comparison
      * @link http://php.net/manual/en/function.array-diff-key.php
-     * @param array $array1 <p>
-     * The array to compare from
-     * </p>
      * @param array $array2 <p>
      * An array to compare against
      * </p>
@@ -1461,18 +1263,16 @@ class Basic_Arr {
      * <i>array1</i> whose keys are not present in any of the
      * other arrays.
      */
-    function array_diff_key(array $array1, array $array2, array $_ = null)
+    public function diff_key(array $array2, array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_diff_key($this->array, $array2);
     }
 
     /**
      * (PHP 5 &gt;= 5.1.0)<br/>
      * Computes the difference of arrays using a callback function on the keys for comparison
      * @link http://php.net/manual/en/function.array-diff-ukey.php
-     * @param array $array1 <p>
-     * The array to compare from
-     * </p>
      * @param array $array2 <p>
      * An array to compare against
      * </p>
@@ -1486,18 +1286,16 @@ class Basic_Arr {
      * @return array an array containing all the entries from
      * <i>array1</i> that are not present in any of the other arrays.
      */
-    function array_diff_ukey(array $array1, array $array2, array $_ = null, callable $key_compare_func)
+    public function diff_ukey(array $array2, array $_ = null, callable $key_compare_func)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_diff_ukey($this->array, $array2, $key_compare_func);
     }
 
     /**
      * (PHP 5)<br/>
      * Computes the difference of arrays by using a callback function for data comparison
      * @link http://php.net/manual/en/function.array-udiff.php
-     * @param array $array1 <p>
-     * The first array.
-     * </p>
      * @param array $array2 <p>
      * The second array.
      * </p>
@@ -1512,18 +1310,16 @@ class Basic_Arr {
      * @return array an array containing all the values of <i>array1</i>
      * that are not present in any of the other arguments.
      */
-    function array_udiff(array $array1, array $array2, array $_ = null, callable $value_compare_func)
+    public function array_udiff(array $array2, array $_ = null, callable $value_compare_func)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_udiff($this->array, $array2, $value_compare_func);
     }
 
     /**
      * (PHP 4 &gt;= 4.3.0, PHP 5)<br/>
      * Computes the difference of arrays with additional index check
      * @link http://php.net/manual/en/function.array-diff-assoc.php
-     * @param array $array1 <p>
-     * The array to compare from
-     * </p>
      * @param array $array2 <p>
      * An array to compare against
      * </p>
@@ -1533,18 +1329,16 @@ class Basic_Arr {
      * @return array an array containing all the values from
      * <i>array1</i> that are not present in any of the other arrays.
      */
-    function array_diff_assoc(array $array1, array $array2, array $_ = null)
+    public function diff_assoc(array $array2, array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_diff_assoc($this->array, $array2);
     }
 
     /**
      * (PHP 5)<br/>
      * Computes the difference of arrays with additional index check, compares data by a callback function
      * @link http://php.net/manual/en/function.array-udiff-assoc.php
-     * @param array $array1 <p>
-     * The first array.
-     * </p>
      * @param array $array2 <p>
      * The second array.
      * </p>
@@ -1563,18 +1357,16 @@ class Basic_Arr {
      * <b>array_diff_assoc</b> which uses internal function for
      * comparison.
      */
-    function array_udiff_assoc(array $array1, array $array2, array $_ = null, callable $value_compare_func)
+    public function udiff_assoc(array $array2, array $_ = null, callable $value_compare_func)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_udiff_assoc($this->array, $array2, $value_compare_func);
     }
 
     /**
      * (PHP 5)<br/>
      * Computes the difference of arrays with additional index check which is performed by a user supplied callback function
      * @link http://php.net/manual/en/function.array-diff-uassoc.php
-     * @param array $array1 <p>
-     * The array to compare from
-     * </p>
      * @param array $array2 <p>
      * An array to compare against
      * </p>
@@ -1588,18 +1380,16 @@ class Basic_Arr {
      * @return array an array containing all the entries from
      * <i>array1</i> that are not present in any of the other arrays.
      */
-    function array_diff_uassoc(array $array1, array $array2, array $_ = null, callable $key_compare_func)
+    public function diff_uassoc(array $array2, array $_ = null, callable $key_compare_func)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_diff_uassoc($this->array, $array2, $key_compare_func);
     }
 
     /**
      * (PHP 5)<br/>
      * Computes the difference of arrays with additional index check, compares data and indexes by a callback function
      * @link http://php.net/manual/en/function.array-udiff-uassoc.php
-     * @param array $array1 <p>
-     * The first array.
-     * </p>
      * @param array $array2 <p>
      * The second array.
      * </p>
@@ -1618,46 +1408,38 @@ class Basic_Arr {
      * <i>array1</i> that are not present in any of the other
      * arguments.
      */
-    function array_udiff_uassoc(array $array1, array $array2, array $_ = null, callable $value_compare_func, callable $key_compare_func)
+    public function udiff_uassoc(array $array2, array $_ = null, callable $value_compare_func, callable $key_compare_func)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return array_udiff_uassoc($this->array, $array2, $value_compare_func, $key_compare_func);
     }
 
     /**
      * (PHP 4 &gt;= 4.0.4, PHP 5)<br/>
      * Calculate the sum of values in an array
      * @link http://php.net/manual/en/function.array-sum.php
-     * @param array $array <p>
-     * The input array.
-     * </p>
      * @return number the sum of values as an integer or float.
      */
-    function array_sum(array $array)
+    public function array_sum()
     {
-
+        return array_sum($this->array);
     }
 
     /**
      * (PHP 5 &gt;= 5.1.0)<br/>
      * Calculate the product of values in an array
      * @link http://php.net/manual/en/function.array-product.php
-     * @param array $array <p>
-     * The array.
-     * </p>
      * @return number the product as an integer or float.
      */
-    function array_product(array $array)
+    public function product()
     {
-
+        return array_product($this->array);
     }
 
     /**
      * (PHP 4 &gt;= 4.0.6, PHP 5)<br/>
      * Filters elements of an array using a callback function
      * @link http://php.net/manual/en/function.array-filter.php
-     * @param array $array <p>
-     * The array to iterate over
-     * </p>
      * @param callable $callback [optional] <p>
      * The callback function to use
      * </p>
@@ -1669,9 +1451,9 @@ class Basic_Arr {
      * </p>
      * @return array the filtered array.
      */
-    function array_filter(array $array, callable $callback = null)
+    public function filter(callable $callback = null)
     {
-
+        return array_filter($this->array, $callback);
     }
 
     /**
@@ -1691,18 +1473,18 @@ class Basic_Arr {
      * @return array an array containing all the elements of <i>array1</i>
      * after applying the <i>callback</i> function to each one.
      */
-    function array_map(callable $callback, array $array1, array $_ = null)
+    public function array_map(callable $callback, array $array1 = array(), array $_ = null)
     {
-
+        // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
+        return (empty($array1))
+            ? array_map($callback, $this->array)
+            : array_map($callback, $this->array, $array1);
     }
 
     /**
      * (PHP 4 &gt;= 4.2.0, PHP 5)<br/>
      * Split an array into chunks
      * @link http://php.net/manual/en/function.array-chunk.php
-     * @param array $array <p>
-     * The array to work on
-     * </p>
      * @param int $size <p>
      * The size of each chunk
      * </p>
@@ -1713,9 +1495,9 @@ class Basic_Arr {
      * @return array a multidimensional numerically indexed array, starting with zero,
      * with each dimension containing <i>size</i> elements.
      */
-    function array_chunk(array $array, $size, $preserve_keys = false)
+    public function chunk($size, $preserve_keys = false)
     {
-
+        return array_chunk($this->array, $size, $preserve_keys);
     }
 
     /**
@@ -1732,9 +1514,10 @@ class Basic_Arr {
      * @return array the combined array, <b>FALSE</b> if the number of elements
      * for each array isn't equal.
      */
-    function array_combine(array $keys, array $values)
+    public function combine(array $keys, array $values)
     {
-
+         // Steef note: not clear why this should be added, because we're only using 1 array here
+        return array_combine($keys, $values);
     }
 
     /**
@@ -1744,14 +1527,11 @@ class Basic_Arr {
      * @param mixed $key <p>
      * Value to check.
      * </p>
-     * @param array $array <p>
-     * An array with keys to check.
-     * </p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
-    function array_key_exists($key, array $array)
+    public function key_exists($key)
     {
-
+        return array_key_exists($key, $this->array);
     }
 
 }
