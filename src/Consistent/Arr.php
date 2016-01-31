@@ -49,24 +49,6 @@ class Arr extends Logic_Arr {
     }
 
     /**
-     * Add an element to an array using "dot" notation if it doesn't exist.
-     *
-     * @param  array   $this->array
-     * @param  string  $key
-     * @param  mixed   $value
-     * @return array
-     */
-    public function add($key, $value)
-    {
-        if(is_null($this->get($key, $this->array)))
-        {
-            $this->set($this->array, $key, $value);
-        }
-
-        return $this->array;
-    }
-
-    /**
      * Build a new array using a callback.
      *
      * @param  array     $this->array
@@ -252,17 +234,18 @@ class Arr extends Logic_Arr {
         if(isset($this->array[$key]))
             return $this->array[$key];
 
+        $array = $this->array;
         foreach(explode('.', $key) as $segment)
         {
-            if(!is_array($this->array) || !array_key_exists($segment, $this->array))
+            if(!is_array($array) || !array_key_exists($segment, $array))
             {
                 return $default;
             }
 
-            $this->array = $this->array[$segment];
+            $array = $array[$segment];
         }
 
-        return $this->array;
+        return $array;
     }
 
     /**
@@ -325,54 +308,6 @@ class Arr extends Logic_Arr {
         $this->forget($this->array, $key);
 
         return $value;
-    }
-
-    /**
-     * Set an array item to a given value using "dot" notation.
-     *
-     * If no key is given to the method, the entire array will be replaced.
-     *
-     * @param  string  $key
-     * @param  mixed   $value
-     * @return array
-     */
-    public function set($key, $value)
-    {
-        if(is_null($key))
-            return $this->array = $value;
-
-        $keys = explode('.', $key);
-
-        while(count($keys) > 1)
-        {
-            $key = array_shift($keys);
-
-            // If the key doesn't exist at this depth, we will just create an empty array
-            // to hold the next value, allowing us to create the arrays to hold final
-            // values at the correct depth. Then we'll keep digging into the array.
-            if(!isset($this->array[$key]) || !is_array($this->array[$key]))
-            {
-                $this->array[$key] = array();
-            }
-
-            $this->array = & $this->array[$key];
-        }
-
-        $this->array[array_shift($keys)] = $value;
-
-        return $this->array;
-    }
-
-    /**
-     * Sort the array using the given Closure.
-     *
-     * @param  array     $this->array
-     * @param  \Closure  $callback
-     * @return array
-     */
-    public function sort(Closure $callback)
-    {
-        return Collection::make($this->array)->sortBy($callback)->all();
     }
 
     /**
