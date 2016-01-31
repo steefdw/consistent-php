@@ -1310,7 +1310,7 @@ class Basic_Arr {
      * @return array an array containing all the values of <i>array1</i>
      * that are not present in any of the other arguments.
      */
-    public function array_udiff(array $array2, array $_ = null, callable $value_compare_func)
+    public function udiff(array $array2, array $_ = null, callable $value_compare_func)
     {
         // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
         return array_udiff($this->array, $array2, $value_compare_func);
@@ -1420,7 +1420,7 @@ class Basic_Arr {
      * @link http://php.net/manual/en/function.array-sum.php
      * @return number the sum of values as an integer or float.
      */
-    public function array_sum()
+    public function sum()
     {
         return array_sum($this->array);
     }
@@ -1473,7 +1473,7 @@ class Basic_Arr {
      * @return array an array containing all the elements of <i>array1</i>
      * after applying the <i>callback</i> function to each one.
      */
-    public function array_map(callable $callback, array $array1 = array(), array $_ = null)
+    public function map(callable $callback, array $array1 = array(), array $_ = null)
     {
         // TODO: use func_get_args() for multiple arguments, like Arr($array)->function($v1, $v2, $v3)
         return (empty($array1))
