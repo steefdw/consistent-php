@@ -30,22 +30,7 @@ class Arr extends Logic_Arr {
 
     public function __construct($array)
     {
-        $this->array = (array)$array;
-    }
-
-    public function keys()
-    {
-        return array_keys($this->array);
-    }
-
-    public function values()
-    {
-        return array_values($this->array);
-    }
-
-    public function search($needle)
-    {
-        return array_search($needle, $this->array);
+        $this->array = $array;
     }
 
     /**
