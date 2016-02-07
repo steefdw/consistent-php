@@ -20,11 +20,12 @@ class BasicArrSortTest extends PHPUnit_Framework_TestCase
      */
     public function test_ksort($array)
     {
-        $arr1 = $arr2 = $array;
+        $arr1 = $array;
+        $arr2 = $array;
         Arr($arr1)->ksort();
         ksort($arr2);
 
-        $this->assertEquals($arr1, $arr2);
+        $this->assertTrue($arr1 === $arr2);
     }
 
     /**
@@ -36,7 +37,7 @@ class BasicArrSortTest extends PHPUnit_Framework_TestCase
         Arr($arr1)->krsort();
         krsort($arr2);
 
-        $this->assertEquals($arr1, $arr2);
+        $this->assertTrue($arr1 === $arr2);
     }
 
     /**
@@ -48,7 +49,7 @@ class BasicArrSortTest extends PHPUnit_Framework_TestCase
         Arr($arr1)->natsort();
         natsort($arr2);
 
-        $this->assertEquals($arr1, $arr2);
+        $this->assertTrue($arr1 === $arr2);
     }
 
     /**
@@ -60,7 +61,7 @@ class BasicArrSortTest extends PHPUnit_Framework_TestCase
         Arr($arr1)->natcasesort();
         natcasesort($arr2);
 
-        $this->assertEquals($arr1, $arr2);
+        $this->assertTrue($arr1 === $arr2);
     }
 
     /**
@@ -72,7 +73,7 @@ class BasicArrSortTest extends PHPUnit_Framework_TestCase
         Arr($arr1)->asort();
         asort($arr2);
 
-        $this->assertEquals($arr1, $arr2);
+        $this->assertTrue($arr1 === $arr2);
     }
 
     /**
@@ -84,7 +85,7 @@ class BasicArrSortTest extends PHPUnit_Framework_TestCase
         Arr($arr1)->arsort();
         arsort($arr2);
 
-        $this->assertEquals($arr1, $arr2);
+        $this->assertTrue($arr1 === $arr2);
     }
 
     /**
@@ -96,7 +97,7 @@ class BasicArrSortTest extends PHPUnit_Framework_TestCase
         Arr($arr1)->sort();
         sort($arr2);
 
-        $this->assertEquals($arr1, $arr2);
+        $this->assertTrue($arr1 === $arr2);
     }
 
     /**
@@ -108,7 +109,7 @@ class BasicArrSortTest extends PHPUnit_Framework_TestCase
         Arr($arr1)->rsort();
         rsort($arr2);
 
-        $this->assertEquals($arr1, $arr2);
+        $this->assertTrue($arr1 === $arr2);
     }
 
 }
